@@ -517,7 +517,7 @@
       </div>
       <!--end::Team Section-->
 
-      <!--begin::Testimonials Section-->
+      <!--begin::Services Section-->
       <div class="mt-20 mb-n20 position-relative z-index-2">
         <!--begin::Container-->
         <div class="container">
@@ -551,9 +551,7 @@
           <!--begin::Current Funding-->
           <div class="d-flex flex-center">
             <!--begin::Items-->
-            <div
-              class="d-flex flex-wrap flex-center mb-15 mx-auto w-xl-900px"
-            >
+            <div class="d-flex flex-wrap flex-center mb-15 mx-auto w-xl-900px">
               <!--begin::Item-->
               <div
                 class="d-flex flex-column flex-center h-200px w-200px m-3 bgi-no-repeat bgi-position-center bgi-size-contain"
@@ -568,10 +566,11 @@
                     class="fs-lg-2hx fs-2x fw-bolder text-white d-flex flex-center"
                   >
                     <div
+                      id="available-funding"
                       class="min-w-70px"
                       data-kt-countup="true"
-					  data-kt-countup-prefix="$"
-                      data-kt-countup-value="100"
+                      data-kt-countup-prefix="$"
+                      data-kt-countup-value="0.0"
                     >
                       0
                     </div>
@@ -591,24 +590,16 @@
           </div>
           <!--end::Current Funding-->
 
-          <!--begin::Row-->
-          <div class="row g-lg-10 mb-10 mb-lg-20">
-            <!--begin::Col-->
-            <div class="col-lg-12">
-              <!--begin::datatable-->
-              <div
-                class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0"
-              >
-                <table
-                  id="transparency_transaction_tbl"
-                  class="table table-hover table-striped border-bottom-2 table-row-gray-300 align-middle gs-0 gy-4"
-                ></table>
-              </div>
-              <!--end::datatable-->
-            </div>
-            <!--end::Col-->
+          <!--begin::datatable-->
+          <div
+            class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-20"
+          >
+            <table
+              id="transparency_transaction_tbl"
+              class="table table-hover table-striped border-bottom-2 table-row-gray-300 align-middle gs-0 gy-4"
+            ></table>
           </div>
-          <!--end::Row-->
+          <!--end::datatable-->
 
           <!--begin::Highlight-->
           <div
@@ -643,7 +634,7 @@
         </div>
         <!--end::Container-->
       </div>
-      <!--end::Testimonials Section-->
+      <!--end::Services Section-->
 
       <!--begin::Footer Section-->
       <div class="mb-0">
@@ -787,52 +778,217 @@
       var hostUrl = "assets/";
 
       document.addEventListener("DOMContentLoaded", (event) => {
-        let data = [
-          {
-            date: "9/02/2024",
-            displayName: "Angel Fontalvo",
-            transactionType: "Donor",
-            total: "$100.00",
-            status: "Accepted",
-          },
-        ];
+        var Index = (function () {
+          // Destroy any existing instance if you are re-initializing
+          if ($.fn.DataTable.isDataTable("#transparency_transaction_tbl")) {
+            $("#transparency_transaction_tbl").DataTable().destroy();
+          }
 
-        const config = {
-          autoWidth: false,
-          destroy: true,
-          searching: false,
-          ordering: true,
-          lengthChange: true,
-          paging: false,
-          responsive: true,
-          processing: true,
-          bInfo: false,
-          language: {
-            emptyTable:
-              "No transactions found. If you believe this to be an error, please contact help@bridgeofsupportfoundation.org.",
-            processing: "Loading... ",
-          },
-          data: data,
-          rowId: "id",
-          columns: [
-            { data: "date", title: "Date" },
-            { data: "displayName", title: "Name" },
-            { data: "transactionType", title: "Transaction Type" },
-            { data: "total", title: "Total (USD)" },
-            { data: "status", title: "Status" },
-          ],
-          headerCallback: function (thead, data, start, end, display) {
-            $(thead)
-              .find("th")
-              .addClass(
-                "text-start text-muted fw-bolder fs-7 text-uppercase gs-0"
-              );
-          },
-          columnDefs: [],
-        };
+          let data = [
+            {
+              date: "9/3/2024",
+              amount: 100.0,
+              processing_cost: null,
+              type: "Donation",
+              delivery_method: null,
+              name: "Angel Fontalvo",
+              region: "USA",
+              purpose: null,
+            },
+            {
+              date: "9/4/2024",
+              amount: 49.37,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Enith T.",
+              region: "Colombia",
+              purpose: "livelihood support",
+            },
+            {
+              date: "9/5/2024",
+              amount: 40.0,
+              processing_cost: 0.0,
+              type: "Withdrawal",
+              delivery_method: "CashApp",
+              name: "Ethel J.",
+              region: "USA",
+              purpose: "livelihood support",
+            },
+            {
+              date: "9/9/2024",
+              amount: 100.0,
+              processing_cost: null,
+              type: "Donation",
+              delivery_method: null,
+              name: "Angel Fontalvo",
+              region: "USA",
+              purpose: null,
+            },
+            {
+              date: "9/9/2024",
+              amount: 41.98,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Enith T.",
+              region: "Colombia",
+              purpose: "livelihood support",
+            },
+            {
+              date: "9/12/2024",
+              amount: 23.95,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Paola O.",
+              region: "Colombia",
+              purpose: "livelihood support",
+            },
+            {
+              date: "9/12/2024",
+              amount: 23.95,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Enith T.",
+              region: "Colombia",
+              purpose: "livelihood support",
+            },
+            {
+              date: "9/13/2024",
+              amount: 12.0,
+              processing_cost: null,
+              type: "Donation",
+              delivery_method: null,
+              name: "Angel Fontalvo",
+              region: "USA",
+              purpose: null,
+            },
+            {
+              date: "9/13/2024",
+              amount: 15.26,
+              processing_cost: null,
+              type: "Donation",
+              delivery_method: null,
+              name: "Angel Fontalvo",
+              region: "USA",
+              purpose: null,
+            },
+            {
+              date: "9/14/2024",
+              amount: 24.23,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Rocio A.",
+              region: "Colombia",
+              purpose: "medical expenses",
+            },
+          ];
 
-        let $dataTable = $("#transparency_transaction_tbl");
-        $dataTable.DataTable(config);
+          var loadAvailableFunding = async function (transactions) {
+            let availableFunding = 0;
+
+            transactions.forEach((transaction) => {
+              if (transaction.type === "Withdrawal") {
+                let total = transaction.amount + transaction.processing_cost;
+                availableFunding = availableFunding - total;
+              } else {
+                availableFunding = availableFunding + transaction.amount;
+              }
+            });
+
+            let $availableFunding = $('#available-funding');
+            $availableFunding.attr('data-kt-countup-value', availableFunding);
+          };
+
+          var loadTransactionTable = async function (transactions) {
+            const config = {
+              autoWidth: false,
+              destroy: true,
+              searching: false,
+              ordering: true,
+              lengthChange: false,
+              paging: false,
+              responsive: true,
+              processing: true,
+              bInfo: false,
+              language: {
+                emptyTable:
+                  "No transactions found. If you believe this to be an error, please contact help@bridgeofsupportfoundation.org.",
+                processing: "Loading... ",
+              },
+              data: transactions,
+              rowId: "id",
+              columns: [
+                { data: "date", title: "Date" },
+                { data: "name", title: "Name" },
+                { data: "type", title: "Transaction Type" },
+                { data: "region", title: "Region" },
+                { data: "amount", title: "Total (USD)" },
+                { data: "purpose", title: "Purpose" },
+              ],
+              headerCallback: function (thead, data, start, end, display) {
+                $(thead)
+                  .find("th")
+                  .addClass(
+                    "text-start text-muted fw-bolder fs-7 text-uppercase gs-0"
+                  );
+              },
+              columnDefs: [
+                {
+                  // Date column definition
+                  targets: 0,
+                  render: function (data, type, row) {
+                    if (type === "display" || type === "filter") {
+                      // Display in desired format (e.g., 'MM/DD/YYYY')
+                      return new Date(data).toLocaleDateString("en-US");
+                    }
+                    // For sorting, return the raw date string
+                    return data;
+                  },
+                },
+                {
+                  // Total(USD) column definition
+                  targets: 4,
+                  render: function (data, type, row) {
+                    try {
+                      if (row.amount) {
+                        let total = row.amount;
+                        if (row.type === "Withdrawal") {
+                          total = total + row.processing_cost;
+                          return `-$${total}`;
+                        }
+                        return `$${total}`;
+                      } else {
+                        return "";
+                      }
+                    } catch (error) {
+                      console.error(
+                        "Error rendering display name column:",
+                        error
+                      );
+                      return "";
+                    }
+                  },
+                },
+              ],
+            };
+
+            let $dataTable = $("#transparency_transaction_tbl");
+            $dataTable.DataTable(config);
+          };
+
+          return {
+            init: async function () {
+              loadAvailableFunding(data);
+              loadTransactionTable(data);
+            },
+          };
+        })();
+
+        Index.init();
       });
     </script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
