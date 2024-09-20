@@ -885,6 +885,56 @@
               region: "Colombia",
               purpose: "medical expenses",
             },
+            {
+              date: "9/18/2024",
+              amount: 100.0,
+              processing_cost: null,
+              type: "Donation",
+              delivery_method: null,
+              name: "Angely Cantillo",
+              region: "USA",
+              purpose: null,
+            },
+            {
+              date: "9/19/2024",
+              amount: 96.0,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Janer O.",
+              region: "Mexico",
+              purpose: "travel emergency",
+            },
+            {
+              date: "9/19/2024",
+              amount: 100.0,
+              processing_cost: null,
+              type: "Donation",
+              delivery_method: null,
+              name: "Angel Fontalvo",
+              region: "USA",
+              purpose: null,
+            },
+            {
+              date: "9/19/2024",
+              amount: 23.95,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Paola O.",
+              region: "Colombia",
+              purpose: "livelihood support",
+            },
+            {
+              date: "9/19/2024",
+              amount: 23.95,
+              processing_cost: 3.95,
+              type: "Withdrawal",
+              delivery_method: "Pangea",
+              name: "Enith T.",
+              region: "Colombia",
+              purpose: "livelihood support",
+            },
           ];
 
           var loadAvailableFunding = async function (transactions) {
@@ -899,8 +949,8 @@
               }
             });
 
-            let $availableFunding = $('#available-funding');
-            $availableFunding.attr('data-kt-countup-value', availableFunding);
+            let $availableFunding = $("#available-funding");
+            $availableFunding.attr("data-kt-countup-value", availableFunding);
           };
 
           var loadTransactionTable = async function (transactions) {
@@ -909,6 +959,7 @@
               destroy: true,
               searching: false,
               ordering: true,
+              order: [[0, "desc"]], // Sort by the first column (date) in descending order
               lengthChange: false,
               paging: false,
               responsive: true,
@@ -942,11 +993,18 @@
                   targets: 0,
                   render: function (data, type, row) {
                     if (type === "display" || type === "filter") {
-                      // Display in desired format (e.g., 'MM/DD/YYYY')
+                      // Format the date for display (MM/DD/YYYY)
                       return new Date(data).toLocaleDateString("en-US");
                     }
-                    // For sorting, return the raw date string
-                    return data;
+                    // For sorting, return the date as a timestamp
+                    return new Date(data).getTime();
+                  },
+                },
+                {
+                  // Name column defintion 
+                  targets: 1, // Assuming "Name" is the second column (index 1)
+                  createdCell: function (td, cellData, rowData, row, col) {
+                    $(td).attr("translate", "no"); // Prevent translation on the Name column
                   },
                 },
                 {
